@@ -1,0 +1,261 @@
+//=============================================================================
+// Projet : Alice (Assistante)
+// Fichier : alice.rc
+//
+//=============================================================================
+
+#include "resources.h"
+
+
+//=============================================================================
+//                         Icones de l'application
+//=============================================================================
+
+IDI_ALICE32 ICON DISCARDABLE "icones/alice32.ico"
+
+IDB_QUITTER BITMAP DISCARDABLE "icones/quitter.bmp"
+
+IDI_INTEROGATION ICON DISCARDABLE "icones/what2.ico"
+
+IDB_APROPOS BITMAP DISCARDABLE "icones/what.bmp"
+
+IDB_CONFIG BITMAP DISCARDABLE "icones/config.bmp"
+
+IDB_CALCULATRICE BITMAP DISCARDABLE "icones/calc.bmp"
+
+IDB_RAPPEL BITMAP DISCARDABLE "icones/time.bmp"
+
+IDB_SCREENSHOT BITMAP DISCARDABLE "icones/screenshot.bmp"
+
+IDB_BILAN BITMAP DISCARDABLE "icones/bilan.bmp"
+
+IDB_USER_INTERFACE BITMAP DISCARDABLE "icones/user.bmp"
+
+IDI_EMAIL ICON DISCARDABLE "icones/email.ico"
+
+IDB_JOUR BITMAP DISCARDABLE "icones/sun.bmp"
+
+IDB_NUIT BITMAP DISCARDABLE "icones/night.bmp"
+
+IDB_NUIT2 BITMAP DISCARDABLE "icones/night2.bmp"
+
+IDB_GO BITMAP DISCARDABLE "icones/go.bmp"
+
+IDB_PRECEDENT BITMAP DISCARDABLE "icones/l_arrow.bmp"
+
+IDB_SUIVANT BITMAP DISCARDABLE "icones/r_arrow.bmp"
+
+IDB_RECHERCHER BITMAP DISCARDABLE "icones/search.bmp"
+
+IDB_EXPLORER BITMAP DISCARDABLE "icones/explore.bmp"
+
+/* Non inclus dans "resources.h" */
+
+IDB_ALICE96 BITMAP DISCARDABLE "icones/alice96.bmp"
+
+IDB_DATE BITMAP DISCARDABLE "icones/agenda.bmp"
+
+IDB_HEURE BITMAP DISCARDABLE "icones/heure.bmp"
+
+//=============================================================================
+//                               Style XP
+//=============================================================================
+
+1 24 "manifest.xml"
+
+//=============================================================================
+//                              Tray Menu
+//=============================================================================
+
+TRAYMENU MENU
+BEGIN
+   POPUP "TrayMenu"
+     BEGIN
+          MENUITEM "&Ouvrir l'interface utilisateur", IDM_USER_INTERFACE
+          MENUITEM SEPARATOR
+          MENUITEM "&Bilan", IDM_BILAN
+          MENUITEM "&Screenshot", IDM_SCREENSHOT
+          MENUITEM "&Rappel", IDM_RAPPEL
+          MENUITEM "&Calculatrice", IDM_CALCULATRICE
+          MENUITEM "&Configuration", IDM_CONFIG
+          MENUITEM SEPARATOR
+          MENUITEM "&À propos", IDM_APROPOS
+          MENUITEM SEPARATOR
+          MENUITEM "&Quitter", IDM_QUITTER
+     END
+END
+
+//=============================================================================
+//                           Apropos DialogBox
+//=============================================================================
+
+APROPOS DIALOGEX 60, 40, 200, 100
+CAPTION "À Propos"
+FONT 10, "tahoma", 700, 0
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+BEGIN
+     GROUPBOX "", -1, 10, 5, 180, 75
+     ICON IDI_ALICE32, -1, 15, 15, 32, 32
+     LTEXT NOM_APP APP_VERSION, TXT_NOM_APP, 45, 15, 140, 12
+     LTEXT "Par : AXeL"
+     "\nCompatibilité : Windows XP/7"
+     "\nLibre de droit et d'utilisations."
+     , -1, 45, 30, 100, 30
+     LTEXT "Email :", -1, 45, 60, 25, 12
+     PUSHBUTTON " axel.prog.25@gmail.com", BT_EMAIL, 72, 58, 102, 12, BS_LEFT
+     DEFPUSHBUTTON "Fermer", IDOK, 140, 84, 50, 12
+END
+
+//=============================================================================
+//                          Config DialogBox
+//=============================================================================
+
+CONFIG DIALOGEX 0, 0, 200, 100
+CAPTION "Configuration"
+FONT 10, "tahoma", 700, 0
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | DS_CENTER
+BEGIN
+     CONTROL "", TAB_CONTROL, WC_TABCONTROL, WS_CHILD | WS_VISIBLE, 10, 5, 180, 75
+     /* Eléments Tab 1 */
+     AUTOCHECKBOX "Activer le boutton 'Quitter' du menu", IDC_ACTIVE_QUITTER, 15, 25, 150, 10
+     AUTOCHECKBOX "Activer la protection par identification", IDC_ACTIVE_PASSWORD, 15, 40, 150, 10
+     AUTOCHECKBOX "Activer le message d'accueil au démarrage", IDC_ACTIVE_ACCUEIL, 15, 55, 150, 10
+     /* Eléments Tab 2 */
+        /* Jour */
+        LTEXT "Jour :", TXT_1, 15, 25, 40, 10
+        EDITTEXT IDE_JOURH, 56, 24, 16, 12, ES_READONLY
+        PUSHBUTTON "+", BT_PLUS_JOURH, 74, 23, 6, 6
+        PUSHBUTTON "-", BT_MOIN_JOURH, 74, 30, 6, 6
+        LTEXT "heures", TXT_JOURH, 85, 25, 30, 10
+        EDITTEXT IDE_JOURM, 115, 24, 16, 12, ES_READONLY
+        PUSHBUTTON "+", BT_PLUS_JOURM, 133, 23, 6, 6
+        PUSHBUTTON "-", BT_MOIN_JOURM, 133, 30, 6, 6
+        LTEXT "minutes", TXT_JOURM, 144, 25, 30, 10
+        /* Nuit */
+        LTEXT "Nuit :", TXT_2, 15, 40, 40, 10
+        EDITTEXT IDE_NUITH, 56, 39, 16, 12, ES_READONLY
+        PUSHBUTTON "+", BT_PLUS_NUITH, 74, 38, 6, 6
+        PUSHBUTTON "-", BT_MOIN_NUITH, 74, 45, 6, 6
+        LTEXT "heures", TXT_NUITH, 85, 40, 30, 10
+        EDITTEXT IDE_NUITM, 115, 39, 16, 12, ES_READONLY
+        PUSHBUTTON "+", BT_PLUS_NUITM, 133, 38, 6, 6
+        PUSHBUTTON "-", BT_MOIN_NUITM, 133, 45, 6, 6
+        LTEXT "minutes", TXT_NUITM, 144, 40, 30, 10
+        /* Sommeil */
+        LTEXT "Sommeil :", TXT_3, 15, 55, 40, 10
+        EDITTEXT IDE_SOMMEILH, 56, 54, 16, 12, ES_READONLY
+        PUSHBUTTON "+", BT_PLUS_SOMMEILH, 74, 53, 6, 6
+        PUSHBUTTON "-", BT_MOIN_SOMMEILH, 74, 60, 6, 6
+        LTEXT "heures", TXT_SOMMEILH, 85, 55, 30, 10
+        EDITTEXT IDE_SOMMEILM, 115, 54, 16, 12, ES_READONLY
+        PUSHBUTTON "+", BT_PLUS_SOMMEILM, 133, 53, 6, 6
+        PUSHBUTTON "-", BT_MOIN_SOMMEILM, 133, 60, 6, 6
+        LTEXT "minutes", TXT_SOMMEILM, 144, 55, 30, 10
+     /* Eléments Tab 3 */
+     AUTOCHECKBOX "Afficher la dialogbox (GUI) du 'Bilan'", IDC_ACTIVE_BILANDLG, 15, 25, 150, 10
+     LTEXT "Changer le mot de passe :", TXT_MDP, 15, 40, 100, 10
+     EDITTEXT IDE_MDP, 110, 39, 70, 12, ES_PASSWORD | ES_AUTOHSCROLL
+     AUTOCHECKBOX "Afficher le mot de passe", IDC_AFFICHER_MDP, 15, 55, 100, 10
+     /* Eléments Tab 4 */
+     EDITTEXT IDE_WHITE_LISTE, 15, 20, 170, 55, ES_MULTILINE | ES_WANTRETURN | WS_VSCROLL
+     /* Eléments Tab 5 */
+     EDITTEXT IDE_FENETRES_CIBLES, 15, 20, 170, 55, ES_MULTILINE | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
+     /* Eléments publics */
+     DEFPUSHBUTTON "Appliquer", IDOK, 80, 84, 50, 12
+     PUSHBUTTON "Annuler", IDCANCEL, 140, 84, 50, 12
+END
+
+//=============================================================================
+//                          Password DialogBox
+//=============================================================================
+
+DLGPASSWORD DIALOGEX 0, 0, 160, 70
+CAPTION NOM_SOLO
+FONT 10, "tahoma", 700, 0
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | DS_CENTER //| WS_EX_TOPMOST
+BEGIN
+     ICON IDI_INTEROGATION, -1, 15, 15, 32, 32
+     LTEXT "Identifiez vous :", -1, 45, 20, 60, 10
+     EDITTEXT IDE_PASSWORD, 35, 35, 75, 12, ES_PASSWORD
+     DEFPUSHBUTTON " ", IDOK, 115, 35, 20, 12, BS_BOTTOM
+END
+
+//=============================================================================
+//                          Bilan DialogBox
+//=============================================================================
+
+BILAN DIALOGEX 0, 0, 280, 250
+CAPTION "Bilan"
+FONT 10, "tahoma", 700, 0
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | DS_CENTER
+BEGIN
+     PUSHBUTTON " ", BT_PRECEDENT, 10, 7, 40, 12, BS_BOTTOM
+     LTEXT "Bilan", TXT_NOM_LOG, 110, 7, 100, 12
+     PUSHBUTTON " ", BT_SUIVANT, 230, 7, 40, 12, BS_BOTTOM
+     CONTROL "", IDE_RICHEDIT, RICHEDIT_CLASS, WS_VISIBLE | WS_CHILD | ES_MULTILINE | ES_DISABLENOSCROLL | ES_SUNKEN | ES_READONLY | WS_VSCROLL | WS_HSCROLL, 10, 25, 260, 200
+     EDITTEXT IDE_RECHERCHER, 10, 232, 65, 12, ES_AUTOHSCROLL
+     DEFPUSHBUTTON " Rechercher", BT_RECHERCHER, 80, 232, 60, 12, BS_CENTER
+     PUSHBUTTON " Explorer", BT_EXPLORER, 145, 232, 60, 12, BS_CENTER
+     PUSHBUTTON "Fermer", IDCANCEL, 210, 232, 60, 12
+END
+
+//=============================================================================
+//                          Rappel DialogBox
+//=============================================================================
+
+RAPPEL DIALOGEX 0, 0, 250, 100
+CAPTION "Rappel"
+FONT 10, "tahoma", 700, 0
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | DS_CENTER //| WS_EX_TOPMOST
+BEGIN
+     CONTROL "", LISTE_RAPPEL, WC_LISTVIEW, WS_BORDER | LVS_REPORT | LVS_SINGLESEL, 10, 8, 160, 84
+     DEFPUSHBUTTON " Nouveau", IDOK, 180, 8, 60, 12, BS_CENTER
+     PUSHBUTTON "Modifier", BT_MODIFIER, 180, 25, 60, 12
+     PUSHBUTTON "Supprimer", BT_SUPPRIMER, 180, 42, 60, 12
+     PUSHBUTTON "Fermer", IDCANCEL, 180, 80, 60, 12
+END
+
+//=============================================================================
+//                          NvRappel DialogBox
+//=============================================================================
+
+NVRAPPEL DIALOGEX 0, 0, 185, 100
+CAPTION "Nouveau rappel"
+FONT 10, "tahoma", 700, 0
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | DS_CENTER //| WS_EX_TOPMOST
+BEGIN
+     LTEXT "Date :", -1, 10, 10, 40, 12
+     /* Jour */
+     EDITTEXT IDE_JOUR, 50, 10, 16, 12, ES_READONLY
+     PUSHBUTTON "+", BT_PLUS_JOUR, 69, 10, 6, 6
+     PUSHBUTTON "-", BT_MOIN_JOUR, 69, 16, 6, 6
+     //LTEXT "j", -1, 80, 12, 10, 12
+     /* Mois */
+     EDITTEXT IDE_MOIS, 90, 10, 16, 12, ES_READONLY
+     PUSHBUTTON "+", BT_PLUS_MOIS, 109, 10, 6, 6
+     PUSHBUTTON "-", BT_MOIN_MOIS, 109, 16, 6, 6
+     //LTEXT "m", -1, 120, 12, 10, 12
+     /* Année */
+     EDITTEXT IDE_ANNEE, 130, 10, 25, 12, ES_READONLY
+     PUSHBUTTON "+", BT_PLUS_ANNEE, 158, 10, 6, 6
+     PUSHBUTTON "-", BT_MOIN_ANNEE, 158, 16, 6, 6
+     //LTEXT "a", -1, 169, 12, 10, 12
+     /* Heure */
+     LTEXT "Heure :", -1, 10, 30, 40, 12
+     EDITTEXT IDE_HEURE, 50, 30, 16, 12, ES_READONLY
+     PUSHBUTTON "+", BT_PLUS_HEURE, 69, 30, 6, 6
+     PUSHBUTTON "-", BT_MOIN_HEURE, 69, 36, 6, 6
+     //LTEXT "h", -1, 80, 32, 10, 12
+     /* Minute */
+     EDITTEXT IDE_MINUTE, 90, 30, 16, 12, ES_READONLY
+     PUSHBUTTON "+", BT_PLUS_MINUTE, 109, 30, 6, 6
+     PUSHBUTTON "-", BT_MOIN_MINUTE, 109, 36, 6, 6
+     //LTEXT "m", -1, 120, 32, 10, 12
+     /* Rappel */
+     LTEXT "Rappel :", -1, 10, 50, 40, 12
+     EDITTEXT IDE_RAPPEL, 50, 50, 125, 12, ES_AUTOHSCROLL
+     /* Le reste */
+     AUTOCHECKBOX "Répéter pour toujours (la date sera ignorée !)", IDC_FOR_EVER, 10, 65, 160, 10
+     DEFPUSHBUTTON "Créer", IDOK, 10, 80, 75, 12
+     PUSHBUTTON "Annuler", IDCANCEL, 100, 80, 75, 12
+END
